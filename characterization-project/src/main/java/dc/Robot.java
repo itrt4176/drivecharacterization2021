@@ -111,9 +111,9 @@ public class Robot extends TimedRobot {
     // create new motor and set neutral modes (if needed)
     // setup Brushless spark
     CANSparkMax motor = new CANSparkMax(port, MotorType.kBrushless);
-    motor.restoreFactoryDefaults(); 
+    // motor.restoreFactoryDefaults(); 
     motor.setIdleMode(IdleMode.kBrake);  
-    motor.setInverted(inverted);
+    // motor.setInverted(inverted);
     
     // setup encoder if motor isn't a follower
     if (side != Sides.FOLLOWER) {
@@ -166,12 +166,12 @@ public class Robot extends TimedRobot {
 
     stick = new Joystick(0);
     
-    frontLeft = new CANSparkMax(Drive.FRNT_LFT, MotorType.kBrushless);
-    backLeft = new CANSparkMax(Drive.BCK_LFT, MotorType.kBrushless);
+    frontLeft = setupCANSparkMax(Drive.FRNT_LFT, Sides.LEFT, false);
+    backLeft = setupCANSparkMax(Drive.BCK_LFT, Sides.FOLLOWER, false);
     leftMotors = new SpeedControllerGroup(frontLeft, backLeft);
 
-    frontRight = new CANSparkMax(Drive.FRNT_RT, MotorType.kBrushless);
-    backRight = new CANSparkMax(Drive.BCK_RT, MotorType.kBrushless);
+    frontRight = setupCANSparkMax(Drive.FRNT_RT, Sides.RIGHT, false);
+    backRight = setupCANSparkMax(Drive.BCK_RT, Sides.FOLLOWER, false);
     rightMotors = new SpeedControllerGroup(frontRight, backRight);
 
     drive = new DifferentialDrive(leftMotors, rightMotors);
