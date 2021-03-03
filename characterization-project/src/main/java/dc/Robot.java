@@ -122,6 +122,7 @@ public class Robot extends TimedRobot {
       // CANEncoder encoder = motor.getAlternateEncoder(AlternateEncoderType.kQuadrature, ENCODER_EDGES_PER_REV);
       CANEncoder encoder = motor.getEncoder();
       encoder.setPositionConversionFactor(Drive.ENC_CNV_FCTR);
+      encoder.setVelocityConversionFactor(Drive.ENC_CNV_FCTR);
 
 
 
